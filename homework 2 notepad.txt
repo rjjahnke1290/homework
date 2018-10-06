@@ -1,0 +1,64 @@
+dim last row as double
+Dim total As Double
+
+Dim ticker As String
+
+Dim totalRow As Integer
+
+
+Dim ws As Worksheet
+
+For Each ws In Sheets
+ws.Activate
+
+
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+totalRow = 2
+
+total = 0
+
+
+
+For i = 2 To lastrow
+
+total = total + Cells(i, 7).Value
+
+
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+If (Cells(i + 1, 1) <> "") Then
+
+
+ticker = Cells(i, 1).Value
+
+'total = total + Cells(i, 7).Value
+
+
+
+     
+Cells(totalRow, 10).Value = ticker
+     
+Cells(totalRow, 11).Value = total
+     
+Cells(1, 10).Value = "Ticker"
+     
+Cells(1, 11).Value = "Total Stock Volume"
+
+     
+totalRow = totalRow + 1
+       
+total = 0
+
+
+End If
+End If
+
+
+
+ Next i
+
+Next ws
+
+
+End Sub
